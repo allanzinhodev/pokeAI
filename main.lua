@@ -91,9 +91,15 @@ local estados = {
                 print("Detectado: POKE")
                 pressionar("left", 5)
             end,
+
+            nopp = function()
+                print("Detectado: Sem PP, usar skill abaixo")
+                pressionar("down", 5)
+                pressionar("A", 5)
+            end,
     
             A = function()
-                print("Detectado: A")
+                pressionar("down", 5)
                 pressionar("A", 5)
             end,
     

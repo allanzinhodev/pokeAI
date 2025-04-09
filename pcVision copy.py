@@ -3,11 +3,16 @@ import numpy as np
 import pyautogui
 import time
 
-def detectar_opcao_menu(templates):
-    # Captura a tela e converte para tons de cinza
+def capturar_tela():
     screenshot = pyautogui.screenshot()
-    screenshot_gray = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2GRAY)
+    return cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2GRAY)
 
+def menu_batalha_ativo(screenshot_gray, template_menu, threshold=0.8):
+    res = cv2.matchTemplate(screenshot_gray, template_menu, cv2.TM_CCOEFF_NORMED)
+    _, max_val, _, _ = cv2.minMaxLoc(res)
+    return max_val >= threshold
+
+def detectar_opcao_menu(screenshot_gray, templates):
     melhor_opcao = None
     melhor_valor = 0
 
@@ -21,25 +26,31 @@ def detectar_opcao_menu(templates):
 
     return melhor_opcao
 
-# Carrega os templates do menu
-templates = {
+# Carrega os templates
+template_menu = cv2.imread("imgs/menu.png", 0)
+templates_opcoes = {
     "fight": cv2.imread("imgs/fight.png", 0),
     "poke": cv2.imread("imgs/poke.png", 0),
     "pack": cv2.imread("imgs/pack.png", 0),
-    "run": cv2.imread("imgs/run.png", 0),
+    "run":  cv2.imread("imgs/run.png", 0),
 }
 
 # Loop contínuo
 while True:
-    opcao_atual = detectar_opcao_menu(templates)
+    screenshot_gray = capturar_tela()
 
-    if opcao_atual:
-        print(f"Opção detectada: {opcao_atual}")
-        with open("opcao_menu.txt", "w") as f:
-            f.write(opcao_atual)
+    if menu_batalha_ativo(screenshot_gray, template_menu):
+        opcao = detectar_opcao_menu(screenshot_gray, templates_opcoes)
+        if opcao:
+            print(f"[Menu Ativo] Opção detectada: {opcao}")
+        else:
+            opcao = "nenhum"
+            print("[Menu Ativo] Nenhuma opção detectada.")
     else:
-        print("Nenhuma opção detectada.")
-        with open("opcao_menu.txt", "w") as f:
-            f.write("nenhum")
+        opcao = "A"
+        print("[Menu Inativo] Pressionando A")
 
-    time.sleep(0.5)  # espera 0.5 segundo antes de verificar de novo
+    with open("opcao_menu.txt", "w") as f:
+        f.write(opcao)
+
+    time.sleep(0.5)
