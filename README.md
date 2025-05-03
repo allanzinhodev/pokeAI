@@ -1,65 +1,73 @@
-# pokeAI - Pokémon Crystal Bot
+# Pokémon Crystal Automation (Lua Edition)
 
-**pokeAI** é um projeto de automação para o jogo Pokémon Crystal, utilizando **visão computacional com Python** e **automação de controles com Lua** no emulador **VBA-RR**. O objetivo do bot é detectar o estado atual da batalha e responder automaticamente com comandos apropriados.
+Os testes e o código em produção que estou desenvolvendo podem ser acompanhados ao vivo no meu canal da Twitch: **[twitch.tv/allaorodrigues](https://twitch.tv/allaorodrigues)**. Passa lá pra trocar uma ideia e ver como tudo tá funcionando na prática!
 
-## 🎮 Funcionalidades
+Este projeto é uma automação para o jogo **Pokémon Crystal**, com foco em exploração e manipulação do jogo em tempo real, utilizando **Lua puro**. A automação simula uma visão computacional do mundo do jogo interpretando diretamente os **offsets de tile** da memória.
+O sistema opera diretamente sobre a memória do emulador, identificando o ambiente, NPCs, obstáculos e interações do jogo por meio dos **offsets de tiles** do mapa. Com essa "visão computacional emulável", o bot toma decisões automaticamente para se mover, evitar colisões, conversar com NPCs, entrar em portas, entre outras ações básicas.
 
+Este projeto **não utiliza mais Python**, sendo uma solução 100% em Lua neste estágio da refatoração.
+
+---
+
+## Recursos principais
+
+- Leitura dos tiles do mapa a partir da RAM.
+- Interpretação de colisões, portas e NPCs.
+- Navegação baseada em lógica de tiles.
+- Sistema de decisão contextual com base no mapa atual.
 - Detecção da seta de seleção no menu de batalha (Fight, Poke, Pack, Run) via imagem.
 - Controle automático do personagem e execução de comandos de batalha.
-- Sistema de comunicação entre Python e Lua via arquivo de texto.
-- Script de inteligência para enfrentar batalhas selvagens automaticamente.
+- Sistema de captura de pokemons
+- Sistema de ações de mapas
+- Sistemas anti-freeze
+- Sistema de troca de pokemon
+- Sistema de troca de Skill
+- Script de inteligência para enfrentar batalhas selvagens e treinadores automaticamente.
+
+---
+
+## Changelog
+
+### Refatoração Lua Pura
+- Removido completamente o código em Python para simplificação e portabilidade.
+- Nova arquitetura baseada em módulos Lua para leitura, interpretação e decisão.
+- Adicionado suporte para leitura precisa dos **offsets de tile** em tempo real.
+- Implementação de um sistema de "visão computacional" via memória do jogo.
+- Melhor desempenho ao rodar dentro do emulador com menor sobrecarga.
+
+### Melhorias no Navegador
+- Caminho adaptativo com fallback quando bloqueado.
+- Reconhecimento de portas, paredes e NPCs com base nos valores de tile.
+- Lógica de desvio para contornar obstáculos de forma natural.
 
 ## 🧠 Tecnologias usadas
-
-- [Python 3](https://www.python.org/)
-- [OpenCV](https://opencv.org/) - para visão computacional
-- [PyAutoGUI](https://pyautogui.readthedocs.io/) - para captura de tela
 - [Lua](https://www.lua.org/) - para automação no VBA-RR
 - [VBA-RR (emulador)](http://vba-rerecording.googlecode.com) - para rodar o jogo com suporte a scripts
+
+
+- [Python 3](https://www.python.org/) - REMOVIDO
+- [OpenCV](https://opencv.org/) - para visão computacional  - REMOVIDO
+- [PyAutoGUI](https://pyautogui.readthedocs.io/) - para captura de tela - REMOVIDO
 
 ## 🗂 Estrutura
 
 ```
 pokeAI/
-├── main.lua               # Script principal em Lua (executado no VBA-RR)
-├── funcoes.lua            # Funções auxiliares para o controle
-├── pcVision.py       # Script Python que detecta o menu com visão computacional
-├── opcao_menu.txt         # Arquivo de comunicação entre Lua e Python
-└── imgs/
-    ├── fight.png
-    ├── poke.png
-    ├── pack.png
-    ├── run.png
-    └── menu.png           # Imagens de referência para o detector
+├── main.lua        # Script principal em Lua (executado no VBA-RR)
+├── config.lua      # Variáveis e funções importantes para contexto
+├── move.lua        # Funções relacionadas a movimentação
+├── battle.lua      # Funções de batalha
+├── map.lua         # Ações de mapas
+└── old_scripts     # Scripts antigos / refatorados
 ```
 
-## 🚀 Como usar
-
-### Pré-requisitos
-
-- Python 3 instalado
-- OpenCV e PyAutoGUI instalados:
-  ```bash
-  pip install opencv-python pyautogui
-  ```
-- VBA-RR configurado com suporte a scripts Lua
-- Imagens de referência capturadas do seu próprio jogo (garanta que a resolução e paleta estejam iguais!)
-
-### Execução
-
-1. Inicie o script Python:
-   ```bash
-   python menu_detector.py
-   ```
-2. No VBA-RR, carregue o `main.lua` como script.
-3. Inicie o jogo Pokémon Crystal.
-4. O bot detectará automaticamente o menu e tomará decisões durante batalhas selvagens.
-
-## 📌 Notas
-
-- O sistema usa captura de tela e comparação por template, então mantenha o emululador visível e estático.
+## Observações
 - Este projeto está em fase experimental, melhorias futuras podem incluir OCR, redes neurais ou controle mais refinado.
+- O suporte ao Python poderá voltar futuramente para análises mais complexas ou integração com IA.
+- Este projeto é apenas para fins educacionais e experimentais.
 
-## 📄 Licença
+---
 
-Este projeto está sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+## Autor
+
+Desenvolvido por Allan Rodrigues • [linkedin.com/in/allanzinho/](https://www.linkedin.com/in/allanzinho/) 
