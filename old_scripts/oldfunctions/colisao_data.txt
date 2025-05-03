@@ -1,0 +1,7 @@
+colisão, 
+07 FF - Bloqueado
+15 - Headbutt
+A5 - Pula
+7A - Escada
+00 - Pode Caminhar
+18 - Mato

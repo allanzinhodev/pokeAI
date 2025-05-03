@@ -1,0 +1,30 @@
+
+28
+00000	0000DCB5	b	h	0	MAPBANK
+00001	0000DCB6	b	h	0	MAP
+00002	0000DCB7	b	h	0	Y HEX
+00003	0000DCB8	b	h	0	X HEX
+00004	0000DCB8	b	u	0	X Signed
+00005	0000DCB7	b	u	0	Y Signed
+00006	0000D22D	b	h	0	ONBAttle?
+00007	0000D230	b	h	0	Battle Type
+00008	0000D148	b	s	0	Room player is in
+00009	00000000	S	S	0	----------------------------
+0000A	0000C5C1	b	h	0	Fight Arrow
+0000B	0000C5C7	b	h	0	PKM Arrow
+0000C	0000C5EF	b	h	0	RUN Arow
+0000D	0000C5E9	b	h	0	Pack Arrow
+0000E	00000000	S	S	0	----------------------------
+0000F	0000C542	b	h	0	nextPokeYes
+00010	0000C56A	b	h	0	nextPokeNo
+00011	0000C5BD	b	h	0	onNextPoke
+00012	0000C5C2	b	h	0	onNextPokemon
+00013	00000000	S	S	0	----------------------------
+00014	0000C4A0	d	h	0	onPocket
+00015	0000C540	d	h	0	onPocketWhere
+00016	0000C568	d	h	0	onCapturedMenu
+00017	0000C63C	w	u	0	HPATUAL
+00018	0000C4C8	d	h	0	
+00019	0000C5C7	d	h	0	onNickNameScreen
+0001A	0000C54F	d	h	0	rightYesArrow
+0001B	0000C577	d	h	0	rightNoArrow

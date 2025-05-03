@@ -1,0 +1,23 @@
+
+seta = ED
+
+
+Fight C5C1
+Pack C5E9
+PKM C5C7
+RUN C5EF
+
+18 altura
+20 largura
+
+C4B5 = 5D Capturado
+
+956D = POCKET????
+01 Balls
+08 Key items
+00 TMHM
+C0 Items
+
+96F2 = 03 em pokemon menu
+
+TODO Sair de tela de mapa
